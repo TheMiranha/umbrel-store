@@ -2,7 +2,7 @@ manifestVersion: 1
 id: miranha-opencord
 name: Opencord
 tagline: Productivity
-icon: https://github.com/TheMiranha/umbrel-store/raw/main/opencord-umbrel/icon.svg
+icon: https://github.com/TheMiranha/umbrel-store/raw/main/miranha-opencord/icon.svg
 category: Productivity
 version: "1.0.0"
 port: 25565
@@ -16,7 +16,7 @@ submission: https://github.com/TheMiranha/OpenChat
 repo: https://github.com/TheMiranha/OpenChat
 support: https://github.com/TheMiranha/OpenChat/issues
 gallery:
-  - https://github.com/TheMiranha/umbrel-store/raw/main/opencord-umbrel/1.png
+  - https://github.com/TheMiranha/umbrel-store/raw/main/miranha-opencord/1.png
 releaseNotes: >-
   Launch
 dependencies: []
