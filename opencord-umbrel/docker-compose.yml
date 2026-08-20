@@ -1,0 +1,94 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: server
+      APP_PORT: 25565
+
+  server:
+    image: themiranha/opencord-backend:latest
+    restart: unless-stopped
+    ports:
+      - "25565:25565"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/opencord
+      - SPRING_DATASOURCE_USERNAME=miranda
+      - SPRING_DATASOURCE_PASSWORD=miranda
+      - SPRING_MONGODB_URI=mongodb://miranda:miranda@mongodb:27017/opencord?authSource=admin
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+      - MINIO_URL=http://minio:9000
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+      - MINIO_BUCKET_NAME=opencord
+      - LIVEKIT_URL=http://livekit:7880
+      - JWT_SECRET=super-secret-key-umbrel-opencord-2026
+      - SERVER_PORT=25565
+    depends_on:
+      database:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+      redis:
+        condition: service_started
+      minio:
+        condition: service_started
+      livekit:
+        condition: service_started
+
+  database:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: miranda
+      POSTGRES_PASSWORD: miranda
+      POSTGRES_DB: opencord
+    volumes:
+      - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U miranda -d opencord"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: miranda
+      MONGO_INITDB_ROOT_PASSWORD: miranda
+      MONGO_INITDB_DATABASE: opencord
+    volumes:
+      - ${APP_DATA_DIR}/data/mongo:/data/db
+
+  redis:
+    image: redis:alpine
+    restart: unless-stopped
+    command: redis-server --save "" --appendonly no
+
+  minio:
+    image: minio/minio:latest
+    restart: unless-stopped
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - ${APP_DATA_DIR}/data/minio:/data
+
+  livekit:
+    image: livekit/livekit-server:latest
+    restart: unless-stopped
+    command: --dev --bind 0.0.0.0
+    ports:
+      - "8000:7880"     # API REST e Sinalização WebSocket
+      - "5520:5520"     # Fallback TCP
+      - "8001:8001/udp" # WebRTC Áudio e Vídeo (UDP)
+    environment:
+      LIVEKIT_KEYS: "devkey: super-secret-key-opencord-livekit-2026"
+      LIVEKIT_RTC_UDP_PORT: 8001
+      LIVEKIT_RTC_TCP_PORT: 5520
