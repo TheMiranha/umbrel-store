@@ -1,27 +1,25 @@
-manifestVersion: 1.1
+manifestVersion: 1
 id: opencord-umbrel
 name: Opencord
-tagline: Open-source Discord alternative for private communities and voice chat
-category: social
+tagline: Discord alternativo, self-hosted e open source
+icon: https://github.com/TheMiranha/umbrel-store/raw/main/opencord-umbrel/icon.png
+category: Productivity
 version: "1.0.0"
 port: 25565
-icon: icon.png
 description: >-
-  Opencord is a self-hosted, feature-rich real-time communication platform designed to be a private alternative to Discord.
-  It includes text channels, voice & video rooms with screen sharing powered by LiveKit, direct messages, custom user profiles with bios, robust server permissions, and attachments with S3/MinIO.
+  Opencord é uma plataforma de comunicação em tempo real self-hosted, com canais de texto, chamadas de voz e vídeo com compartilhamento de tela, mensagens diretas e perfis personalizados.
+
 developer: themiranha
-website: https://github.com/themiranha/OpenChat
-submitter: Miranda
-submission: https://github.com/themiranha/OpenChat
-repo: https://github.com/themiranha/OpenChat
-support: https://github.com/themiranha/OpenChat/issues
+website: https://github.com/TheMiranha/OpenChat
+submitter: Umbrel
+submission: https://github.com/TheMiranha/OpenChat
+repo: https://github.com/TheMiranha/OpenChat
+support: https://github.com/TheMiranha/OpenChat/issues
 gallery:
-  - 1.png
+  - https://github.com/TheMiranha/umbrel-store/raw/main/opencord-umbrel/1.png
 releaseNotes: >-
-  Initial release of Opencord on Umbrel App Store!
+  Launch
 dependencies: []
 path: ""
 defaultUsername: ""
 defaultPassword: ""
-torOnly: false
-permissions: []
