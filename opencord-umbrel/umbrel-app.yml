@@ -5,17 +5,18 @@ tagline: Open-source Discord alternative for private communities and voice chat
 description: >-
   Opencord is a self-hosted, feature-rich real-time communication platform designed to be a private alternative to Discord.
   It includes text channels, voice & video rooms with screen sharing powered by LiveKit, direct messages, custom user profiles with bios, robust server permissions, and attachments with S3/MinIO.
-category: social
+category: media
 version: "1.0.0"
 port: 25565
-icon: icon.svg
+icon: icon.png
 developer: The Best Programmer of the World
 website: https://github.com/themiranha
 submitter: Miranda
 submission: https://github.com/themiranha
 repo: https://github.com/themiranha/OpenChat
 support: https://github.com/themiranha/OpenChat/issues
-gallery: []
+gallery:
+  - 1.png
 releaseNotes: >-
   Initial release of Opencord on Umbrel App Store! Includes text channels, voice & video rooms, screen sharing, server management, custom profiles, and direct messages.
 dependencies: []

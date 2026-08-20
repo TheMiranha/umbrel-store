@@ -9,8 +9,6 @@ services:
   server:
     image: themiranha/opencord-backend:latest
     restart: unless-stopped
-    ports:
-      - "25565:25565"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/opencord
       - SPRING_DATASOURCE_USERNAME=miranda
@@ -26,16 +24,11 @@ services:
       - JWT_SECRET=super-secret-key-umbrel-opencord-2026
       - SERVER_PORT=25565
     depends_on:
-      database:
-        condition: service_healthy
-      mongodb:
-        condition: service_started
-      redis:
-        condition: service_started
-      minio:
-        condition: service_started
-      livekit:
-        condition: service_started
+      - database
+      - mongodb
+      - redis
+      - minio
+      - livekit
 
   database:
     image: postgres:17-alpine
@@ -46,11 +39,6 @@ services:
       POSTGRES_DB: opencord
     volumes:
       - ${APP_DATA_DIR}/data/postgres:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U miranda -d opencord"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
 
   mongodb:
     image: mongo:latest
