@@ -2,9 +2,10 @@ manifestVersion: 1.1
 id: opencord-umbrel
 name: Opencord
 tagline: Open-source Discord alternative for private communities and voice chat
-category: media
+category: social
 version: "1.0.0"
 port: 25565
+icon: icon.png
 description: >-
   Opencord is a self-hosted, feature-rich real-time communication platform designed to be a private alternative to Discord.
   It includes text channels, voice & video rooms with screen sharing powered by LiveKit, direct messages, custom user profiles with bios, robust server permissions, and attachments with S3/MinIO.
@@ -22,3 +23,5 @@ dependencies: []
 path: ""
 defaultUsername: ""
 defaultPassword: ""
+torOnly: false
+permissions: []
