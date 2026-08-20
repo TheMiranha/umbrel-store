@@ -1,13 +1,13 @@
 manifestVersion: 1
-id: opencord-umbrel
+id: miranha-opencord
 name: Opencord
-tagline: Discord alternativo, self-hosted e open source
-icon: https://github.com/TheMiranha/umbrel-store/raw/main/opencord-umbrel/icon.png
+tagline: Productivity
+icon: https://github.com/TheMiranha/umbrel-store/raw/main/opencord-umbrel/icon.svg
 category: Productivity
 version: "1.0.0"
 port: 25565
 description: >-
-  Projeto com ideias do Discord, porém opensource e self-hosted.
+  Projeto com ideias do Discord, porém opensource.
 
 developer: themiranha
 website: https://github.com/TheMiranha/OpenChat
@@ -23,5 +23,3 @@ dependencies: []
 path: ""
 defaultUsername: ""
 defaultPassword: ""
-torOnly: false
-permissions: []
