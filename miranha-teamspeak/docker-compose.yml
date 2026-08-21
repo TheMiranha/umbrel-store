@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  server:
+    image: teamspeak:3
+    restart: unless-stopped
+    ports:
+      - "9987:9987/udp"    # Voice communication
+      - "10011:10011/tcp"  # ServerQuery (raw)
+      - "10022:10022/tcp"  # ServerQuery (SSH)
+      - "30033:30033/tcp"  # File transfer
+    environment:
+      TS3SERVER_LICENSE: accept
+      TS3SERVER_DB_PLUGIN: ts3db_sqlite3
+      TS3SERVER_DB_SQLCREATEPATH: create_sqlite
+      TS3SERVER_QUERY_PROTOCOLS: raw,ssh
+    volumes:
+      - ${APP_DATA_DIR}/data:/var/ts3server
