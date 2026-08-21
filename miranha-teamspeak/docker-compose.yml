@@ -1,8 +1,13 @@
 version: "3.7"
 
 services:
+  app_proxy:
+    environment:
+      APP_HOST: miranha-teamspeak_server_1
+      APP_PORT: 9987
+
   server:
-    image: teamspeak:3
+    image: teamspeak:latest
     restart: unless-stopped
     ports:
       - "9987:9987/udp"    # Voice communication
